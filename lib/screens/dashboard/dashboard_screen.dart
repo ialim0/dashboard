@@ -6,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'components/chart.dart';
 import 'components/header.dart';
+import 'components/storage_details.dart';
+import 'components/storage_info_card.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({Key key}) : super(key: key);
@@ -22,12 +24,34 @@ class DashboardScreen extends StatelessWidget {
               height: defaultPadding,
             ),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   flex: 5,
-                  child: Container(
-                    height: 500,
-                    color: Colors.white,
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "My Files",
+                            style: Theme.of(context).textTheme.subtitle1,
+                          ),
+                          ElevatedButton.icon(
+                            style: TextButton.styleFrom(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: defaultPadding * 1.5,
+                                  vertical: defaultPadding),
+                            ),
+                            onPressed: () {},
+                            icon: Icon(Icons.add),
+                            label: Text(
+                              "Add New",
+                            ),
+                          )
+                        ],
+                      )
+                    ],
                   ),
                 ),
                 SizedBox(
@@ -35,29 +59,7 @@ class DashboardScreen extends StatelessWidget {
                 ),
                 Expanded(
                   flex: 2,
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    height: 500,
-                    decoration: BoxDecoration(
-                      color: secondaryColor,
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                    ),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(
-                            "Storage details",
-                            style: GoogleFonts.adamina(
-                                fontSize: 21, fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                        Chart()
-                      ],
-                    ),
-                  ),
+                  child: StorageDetails(),
                 ),
               ],
             ),
